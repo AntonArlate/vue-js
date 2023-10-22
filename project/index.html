@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lato:wght@300;400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Jost&family=Lato:wght@300;400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- HEADER -->
+    <section class="header center">
+        <div class="header_logo logo">
+            <img src="./img/Logo.svg" alt="logo__img" class="logo__img">
+            <h3 class="logo__text">Interno</h3>
+        </div>
+        <section class="header__menubar">
+            <article class="header__menubar__home">Home</article>
+            <article class="header__menubar__project">Project</article>
+            <article class="header__menubar__blog">Blog</article>
+        </section>
+    </section>
+
+    <!-- BANNER -->
+    <section class="banner center">
+        <div class="banner__background-box">
+            <div class="banner__background" style="background-image: url('./img/banner-Photo.png');"></div>
+
+            <div class="banner__intro">
+                <div class="banner__intro__sub-content">
+                    <h2 class="banner__intro__sub-content__title">Let Your Home Be Unique</h2>
+                    <p class="banner__intro__sub-content__text">There are many variations of the passages of lorem Ipsum
+                        fromavailable, majority.</p>
+                </div>
+                <button class="banner__intro__button">
+                    <div class="banner__intro__button__inner">
+                        <p class="banner__intro__button__inner__text">Get Started</p>
+                        <img src="./img/banner-button-Vector.svg" alt="vector"
+                            class="banner__intro__button__inner__vector">
+                    </div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECT -->
+    <section class="project center">
+        <div class="project__heading">
+            <h2 class="project__heading__title">Follow Our Projects</h2>
+            <p class="project__heading__text">It is a long established fact that a reader will be distracted by the of
+                readable content of page lookings at its layouts points.</p>
+        </div>
+        <div class="project__box">
+            <template id="project-card-template">
+                <div class="project__card">
+                    <div class="project__card__image-box">
+                        <div class="project__card__image-box__background"
+                            style="background-image: url('./img/card-modern-kitchan-Photo.png');"></div>
+                    </div>
+                    <div class="project__card__content">
+                        <div class="project__card__content__sub-content">
+                            <h3 class="project__card__content__sub-content__name">Modern Kitchan</h3>
+                            <p class="project__card__content__sub-content__tag">Decor / Artchitecture</p>
+                        </div>
+                        <button class="project__card__content__button">
+                            <svg width="10" height="20" viewBox="0 0 10 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 19L9 10L1 1" stroke="#292F36" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+
+                        </button>
+                    </div>
+                </div>
+            </template>
+            <script>
+                // Получаем доступ к образцу карточки
+                let cardTemplate = document.getElementById('project-card-template');
+                // Получаем контейнер, в который будем вставлять копии
+                let container = document.querySelector('.project__box');
+                // Количество копий, которые нужно создать
+                let numCopies = 4;
+                // Создаем указанное количество копий образца и вставляем их в контейнер
+                for (let i = 0; i < numCopies; i++) {
+                    const cardClone = cardTemplate.content.cloneNode(true);
+                    const card = cardClone.querySelector('.project__card__image-box');
+                    switch (i) {
+                        case 0:
+                            card.classList.add('project__card_top-left');
+                            break;
+                        case 1:
+                            card.classList.add('project__card_top-right');
+                            break;
+                        case 2:
+                            card.classList.add('project__card_bottom-left');
+                            break;
+                        case 3:
+                            card.classList.add('project__card_bottom-right');
+                            break;
+                    }
+                    container.appendChild(cardClone);
+                }
+            </script>
+        </div>
+    </section>
+
+    <!-- COUNTER -->
+    <section class="counter center">
+        <div class="counter__content">
+            <div class="counter__content__1">
+                <div class="counter__content__text">
+                    <h2 class="counter__content__text__count">12</h2>
+                    <p class="counter__content__text__name">Years Of Experiance</p>
+                </div>
+                <div class="counter__content__line"></div>
+            </div>
+
+            <div class="counter__content__2">
+                <div class="counter__content__text">
+                    <h2 class="counter__content__text__count">85</h2>
+                    <p class="counter__content__text__name">Success Project</p>
+                </div>
+                <div class="counter__content__line"></div>
+            </div>
+
+            <div class="counter__content__3">
+                <div class="counter__content__text">
+                    <h2 class="counter__content__text__count">15</h2>
+                    <p class="counter__content__text__name">Active Project</p>
+                </div>
+                <div class="counter__content__line"></div>
+            </div>
+
+            <div class="counter__content__1">
+                <div class="counter__content__text">
+                    <h2 class="counter__content__text__count">95</h2>
+                    <p class="counter__content__text__name">Happy CUstomers</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BLOG -->
+    <section class="blog center">
+        <div class="blog__heading">
+            <h2 class="blog__heading__title"></h2>
+            <p class="blog__heading__text"></p>
+        </div>
+        <div class="blog__box">
+            <template id="blog-card-template" class="blog__card">
+                <!-- данный див будет поверх всех со своим выавниванием -->
+                <div class="blog__card__tag">
+                    Kitchan Design
+                </div>
+                <!-- чуть больше чем содержимое карточки, нужно для доп заливки -->
+                <div class="blog__card__content">
+                    <div class="blog__card__content__sub">
+                        <div class="blog__card__content__sub__image-box">
+                            <img src="" alt="blog__card__content__sub__image-box__img"
+                                class="blog__card__content__sub__image-box__img">
+                        </div>
+                        <div class="blog__card__content__sub__description">
+                            <p class="blog__card__content__sub__description__text">Let’s Get Solution For Building
+                                Construction Work</p>
+                            <div class="blog__card__content__sub__description__bottom">
+                                <p class="blog__card__content__sub__description__bottom__date">26 December,2022 </p>
+                                <button class="blog__card__content__sub__description__bottom__button">
+                                    <img src="" alt="blog__card__content__sub__description__bottom__button__vector"
+                                        class="blog__card__content__sub__description__bottom__button__vector">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <script>
+                // Получаем доступ к образцу карточки
+                cardTemplate = document.getElementById('blog-card-template');
+                // Получаем контейнер, в который будем вставлять копии
+                container = document.querySelector('.blog__box');
+                // Количество копий, которые нужно создать
+                numCopies = 3;
+                // Создаем указанное количество копий образца и вставляем их в контейнер
+                for (let i = 0; i < numCopies; i++) {
+                    const cardClone = cardTemplate.content.cloneNode(true);
+                    container.appendChild(cardClone);
+                }
+            </script>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <section class="footer center">
+        <div class="footer__interno">
+            <div class="footer__interno__sub-content">
+                <div class="footer_logo">
+                    <img src="" alt="logo__img" class="logo__img">
+                    <h3 class="logo__text">Interno</h3>
+                </div>
+                <p class="footer__interno__sub-content__text">It is a long established fact that a reader will be
+                    distracted lookings.</p>
+                <div class="footer__interno__sub-content__icons">
+                    <img src="" alt="twittwer" class="footer__interno__sub-content__icons__twittwer">
+                    <img src="" alt="in" class="footer__interno__sub-content__icons__in">
+                </div>
+            </div>
+        </div>
+        <div class="footer__pages">
+            <h2 class="footer__pages__title">Pages</h2>
+            <ul class="footer__pages__list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Project</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer__services">
+        </div>
+        <div class="footer__contact">
+            <h2 class="footer__contact__title">Contact</h2>
+            <div class="footer__contact__content">
+                <p>55 East Birchwood Ave. Brooklyn, New York 11201</p>
+                <p>contact@interno.com</p>
+                <p>(123) 456 - 7890</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
