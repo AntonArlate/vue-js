@@ -1,0 +1,123 @@
+<!-- 
+1. Создать кнопку "Перевернуть". При клике на кнопку текст кнопки должен перевернуться и отобразиться в обратном порядке.
+2. Есть список элементов. Пользователь может добавлять новые элементы списка с текстом “Новый элемент списка” нажав на кнопку "Добавить".
+3. *Дополнительное задание: При клике на элемент списка он должен быть удален. (по желанию)
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        * {
+            font-size: 28px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TASK 1 -->
+    <div id="app1">
+        <button @click="reverseText">{{ buttonText }}</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app1",
+            data: {
+                buttonText: "Перевернуть",
+            },
+            methods: {
+                reverseText() {
+                    // split - разбивает текст в массив по символам
+                    // reverse - переворачивает получившийся массив
+                    // join - склеивает массив обратно в строку
+                    this.buttonText = this.buttonText.split("").reverse().join("");
+                }
+            }
+        });
+    </script>
+
+    <!-- TASK 2.1 вариант через event 
+    ID для работы примера не требуется. Используется только для проверки корректности выбора элементов-->
+    <div id="app2_1">
+        <ul>
+            <!-- тут мы перебираем при помощи vue-for  -->
+            <li v-for="item in items" @click="removeItem($event)">{{ item.text + ' id: ' +
+                item.id }}</li>
+        </ul>
+        <button @click="addItem">Добавить 2,1</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app2_1",
+            data: {
+                items: [], // здесь у нас будут храниться элементы
+            },
+            methods: {
+                addItem() {
+                    this.items.push({ id: Date.now(), text: "Новый элемент списка" });
+                },
+                removeItem(event) {
+                    // теоретически может возникнуть проблема с удалением родительского элемента
+                    // Однако в данном примере управление распространением события не требуется
+                    // event.stopPropagation();
+
+                    const element = event.target; // Получаем элемент списка, на котором произошло событие
+                    const index = Array.from(element.parentNode.children).indexOf(element); // Находим индекс элемента среди детей родительского элемента
+                    if (index !== -1) {
+                        this.items.splice(index, 1); // Удаляем элемент из массива по индексу
+                    }
+                },
+
+                // следующий метод примерно тоже что и предыдущий, только вместо того чтобы искать элемент в списке (хотя он и создаётся из тогоже массива), мы его ищем в сохранённом массиве.
+                // при этом передаётся сам item созданый в vue for. Тестовый пример применялся но не сохранён
+                removeItem2(item) {
+                    const index = this.items.findIndex(i => i == item); // Находим индекс элемента в массиве
+                    if (index !== -1) {
+                        this.items.splice(index, 1); // Удаляем элемент из массива по индексу
+                    }
+                }
+
+            }
+        });
+    </script>
+
+    <!-- TASK 2.2 вариант через уникальные id объектов-->
+    <div id="app2_2">
+        <ul>
+            <!-- тут мы перебираем при помощи vue-for 
+            :key="item.id" - не понял зачем используется.
+            -->
+            <li v-for="item in items" :key="item.id" @click="removeItem(item.id)">{{ item.text + ' id: ' + item.id }}
+            </li>
+        </ul>
+        <button @click="addItem">Добавить 2,2</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app2_2",
+            data: {
+                items: [], // здесь у нас будут храниться элементы
+            },
+            methods: {
+                addItem() {
+                    this.items.push({ id: Date.now(), text: "Новый элемент списка" });
+                },
+
+                removeItem(id) {
+                    this.items = this.items.filter(item => item.id !== id);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
