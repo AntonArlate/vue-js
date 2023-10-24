@@ -1,0 +1,307 @@
+// border: 2px solid fuchsia;
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'DM Serif Display';
+    font-style: normal;
+    font-weight: 400;
+}
+
+.center {
+    padding-left: calc(50% - 600px);
+    padding-right: calc(50% - 600px);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &__img {
+        width: 34px;
+        height: 34px;
+    }
+
+    &__text {
+        font-size: 40px;
+        line-height: 125%;
+        /* identical to box height, or 50px */
+        color: #292F36;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+
+    &__menubar {
+        display: flex;
+        gap: 50px;
+
+        font-family: 'Jost';
+        font-size: 20px;
+        line-height: 125%;
+        /* identical to box height, or 25px */
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        color: #292F36;
+
+    }
+}
+
+.banner {
+    &__background-box {
+        overflow: hidden;
+        border-radius: 70px;
+        position: relative;
+        z-index: 1;
+        padding: 208px 715px 208px 52px;
+
+        .banner__background {
+            width: 1353px;
+            height: 2028px;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: -541px;
+            left: -90px;
+            z-index: -1;
+        }
+    }
+
+    &__intro {
+        display: flex;
+        flex-direction: column;
+        gap: 21px;
+        max-width: 434px;
+
+        &__sub-content {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+
+            &__title {
+                font-size: 65px;
+                line-height: 125%;
+                /* or 81px */
+                display: flex;
+                align-items: center;
+
+                color: #292F36;
+
+                /* Inside auto layout */
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+            }
+
+            &__text {
+                font-family: 'Jost';
+                font-size: 22px;
+                line-height: 150%;
+                /* or 33px */
+                display: flex;
+                align-items: center;
+                letter-spacing: 0.01em;
+
+                color: #4D5053;
+
+                /* Inside auto layout */
+                flex: none;
+                order: 1;
+                flex-grow: 0;
+            }
+        }
+
+        &__button {
+            padding: 26px 48px;
+            border-radius: 16px;
+            background-color: #292F36;
+            width: fit-content;
+            border: none;
+
+            &__inner {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+
+                &__text {
+                    font-family: 'Jost';
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 125%;
+
+                    display: flex;
+                    align-items: center;
+                    text-align: center;
+                    letter-spacing: 0.02em;
+
+                    color: #FFFFFF;
+
+                    /* Inside auto layout */
+                    flex: none;
+                    order: 0;
+                    flex-grow: 0;
+                }
+
+                &__vector {
+                    width: 15.4px;
+                    height: 13.18px;
+                }
+            }
+        }
+    }
+
+}
+
+.project {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 93px;
+
+    &__heading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        max-width: 737px;
+
+        &__title {
+            font-size: 50px;
+            line-height: 125%;
+            /* identical to box height, or 62px */
+            display: flex;
+            align-items: center;
+            text-align: center;
+            letter-spacing: 0.02em;
+
+            color: #292F36;
+
+            /* Inside auto layout */
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+        }
+
+        &__text {
+            font-family: 'Jost';
+
+            font-size: 22px;
+            line-height: 150%;
+            /* or 33px */
+            display: flex;
+            align-items: center;
+            text-align: center;
+            letter-spacing: 0.01em;
+
+            color: #4D5053;
+
+            /* Inside auto layout */
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+        }
+    }
+
+    &__box {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 56px 104px;
+
+        .project__card {
+            width: 525px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+
+            &_top-left {
+                border-radius: 0 80px 0 0;
+            }
+
+            &_top-right {
+                border-radius: 80px 0 0 0;
+            }
+
+            &_bottom-left {
+                border-radius: 0 0 80px 0;
+            }
+
+            &_bottom-right {
+                border-radius: 0 0 0 80px;
+            }
+
+            &__image-box {
+                overflow: hidden;
+                position: relative;
+                height: 548px;
+
+                &__background {
+                    width: 686px;
+                    height: 1031px;
+                    background-repeat: no-repeat;
+                    position: absolute;
+                    top: -267px;
+                    left: -101px;
+                }
+            }
+
+            &__content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                &__sub-content {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+
+                    &__name {
+                        font-size: 25px;
+                        line-height: 125%;
+                        /* or 31px */
+                        display: flex;
+                        align-items: center;
+                        letter-spacing: 0.02em;
+
+                        color: #292F36;
+
+                        /* Inside auto layout */
+                        flex: none;
+                        order: 0;
+                        flex-grow: 0;
+                    }
+
+                    &__tag {
+                        font-family: 'Jost';
+                        font-size: 22px;
+                        line-height: 150%;
+                        /* or 33px */
+                        display: flex;
+                        align-items: center;
+                        letter-spacing: 0.01em;
+
+                        color: #4D5053;
+
+                        /* Inside auto layout */
+                        flex: none;
+                        order: 1;
+                        flex-grow: 0;
+                    }
+                }
+
+                &__button {
+                    border: none;
+                    border-radius: 50%;
+                    width: 70px;
+                    height: 70px;
+                    background-color: #F4F0EC;
+                }
+            }
+        }
+    }
+}
