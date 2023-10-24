@@ -218,6 +218,9 @@ a {
   gap: 30px;
   margin-top: 150px;
 }
+.blog__news__card-line {
+  display: flex;
+}
 .blog__news .news-card {
   border: 1px solid #E7E7E7;
   filter: drop-shadow(0px 10px 30px rgba(255, 255, 255, 0.25));
@@ -226,6 +229,12 @@ a {
   width: fit-content;
   height: -moz-fit-content;
   height: fit-content;
+}
+.blog__news .news-card:hover {
+  background-color: #F4F0EC;
+}
+.blog__news .news-card:hover .button-full-article {
+  background-color: #FFFFFF;
 }
 .blog__news .news-card__content {
   margin: 21px;
