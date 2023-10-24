@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <!-- HEADER -->
+    <section class="header center">
+        <a href="../index.html" class="header_logo logo">
+            <img src="../img/Logo.svg" alt="logo__img" class="logo__img">
+            <h3 class="logo__text">Interno</h3>
+        </a>
+        <section class="header__menubar">
+            <a href="../index.html">Home</a>
+            <article class="header__menubar__project">Project</article>
+            <a href="#">Blog</a>
+        </section>
+    </section>
+
+    <!-- BANNER -->
+    <section class="banner">
+        <div class="banner__background" style="background-image: url('../img/blog-banner.png');"></div>
+
+        <div class="banner__intro">
+            <nav class="breadcrumb">
+                <h1 class="page-title">Articles & News</h1>
+                <ul class="breadcrumb_links">
+                    <li class="decorator"><a href="../index.html" class="link">Home</a></li>
+                    <li class="decorator"><a href="#" class="link">Blog</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- BLOG -->
+    <!-- сюда подключаем VUE -->
+    <section class="blog center" id="app">
+
+        <div class="blog__latest-post">
+            <h2 class="block-title">Latest Post</h2>
+            <div class="blog__latest-post__box">
+                <!-- проверяем что есть что отображать -->
+                <div v-if="articles.length > 0" class="blog__latest-post__box__content">
+                    <div class="blog__latest-post__box__content__image-box">
+                        <img :src="articles[0].imgLink" :alt="articles[0].title"
+                            class="blog__latest-post__box__content__image-box__img" />
+                    </div>
+                    <div class="blog__latest-post__box__content__subcontent">
+                        <div class="text-box">
+                            <h2 class="blog__latest-post__box__content__subcontent__title">{{ articles[0].title }}</h2>
+                            <p class="text-box__brief" v-for="paragraph in getParagraphs(articles[0].content)">{{
+                                paragraph }}</p>
+                        </div>
+                        <div class="blog__latest-post__box__content__subcontent__footer">
+                            <p class="date">{{formatDate(articles[0].date )}}</p>
+                            <button class="button-full-article">
+                                <svg width="10" height="20" viewBox="0 0 10 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 19L9 10L1 1" stroke="#292F36" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="blog__news">
+            <h2 class="block-title">Articles & News</h2>
+            <div class="blog__news__card-line">
+                <div class="blog__news__card-line__card news-card">
+                    <div class="news-card__content">
+                        <div class="news-card__content__image-box">
+                            <img :src="articles[1].imgLink" :alt="articles[1].title"
+                                class="news-card__content__image-box__img" />
+                            <div class="news-card__content__image-box__tag">{{ articles[1].tag }}</div>
+                        </div>
+                        <div class="news-card__content__subcontent">
+                            <div class="text-box">
+                                <h2 class="news-card__content__subcontent__title">{{ articles[1].title }}</h2>
+                            </div>
+                            <div class="news-card__content__subcontent__footer">
+                                <p class="date">{{formatDate(articles[1].date )}}</p>
+                                <button class="button-full-article">
+                                    <svg width="10" height="20" viewBox="0 0 10 20" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 19L9 10L1 1" stroke="#292F36" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                test: '025',
+                rowCount: 2,        // количество строк
+                cardsPerRow: 3,     // количество карточек в строке
+                articles: [
+                    {
+                        imgLink: '../img/articles-26_12_2022-1.png',
+                        title: 'Low Cost Latest Invented Interior Designing Ideas',
+                        content: 'Lorem ipsum dolor sit amet, adipiscing Aliquam eu sem vitae turpis dignissim maximus.posuere in.Contrary to popular belief.\n\nLorem Ipsum is not simply random text. It has roots in a piece of classica.',
+                        tag: 'Kitchan Design',
+                        date: new Date('2022-12-26 23:00:00')
+                    },
+                    {
+                        imgLink: '../img/articles-26_12_2022-2.png',
+                        title: 'Let’s Get Solution For Building Construction Work',
+                        content: 'Lorem ipsum dolor.\n\nLorem Ipsum is not simply.',
+                        tag: 'Kitchan Design',
+                        date: new Date('2022-12-26 22:00:00')
+                    },
+                    {
+                        imgLink: '../img/articles-22_12_2022-1.png',
+                        title: 'Low Cost Latest Invented Interior Designing Ideas.',
+                        content: 'Lorem ipsum dolor.\n\nLorem Ipsum is not simply.',
+                        tag: 'Living Design',
+                        date: new Date('2022-12-22 21:00:00')
+                    },
+                    {
+                        imgLink: '../img/articles-25_12_2022-1.png',
+                        title: 'Best For Any Office & Business Interior Solution',
+                        content: 'Lorem ipsum dolor.\n\nLorem Ipsum is not simply.',
+                        tag: 'Interior Design',
+                        date: new Date('2022-12-25 20:00:00')
+                    },
+                    {
+                        imgLink: '../img/articles-26_12_2022-3.png',
+                        title: 'Let’s Get Solution For Building Construction Work',
+                        content: 'Lorem ipsum dolor.\n\nLorem Ipsum is not simply.',
+                        tag: 'Kitchan Design',
+                        date: new Date('2022-12-26 19:00:00')
+                    },
+                    {
+                        imgLink: '../img/articles-22_12_2022-2.png',
+                        title: 'Low Cost Latest Invented Interior Designing Ideas.',
+                        content: 'Lorem ipsum dolor.\n\nLorem Ipsum is not simply.',
+                        tag: 'Living Design',
+                        date: new Date('2022-12-22 18:00:00')
+                    },
+                    {
+                        imgLink: '../img/articles-25_12_2022-2.png',
+                        title: 'Best For Any Office & Business Interior Solution',
+                        content: 'Lorem ipsum dolor.\n\nLorem Ipsum is not simply.',
+                        tag: 'Interior Design',
+                        date: new Date('2022-12-25 17:00:00')
+                    },
+                ],
+            },
+
+            methods: {
+                getParagraphs: function (content) {
+                    return content.split('\n\n'); // Разделение текста на параграфы по двойному переносу строки
+                },
+
+                // нужна библиотека которую внутри html не подключить. Пока это лучшее что я смог получить форматируя дату вручную
+                formatDate(date) {
+                    const year = date.getFullYear();
+                    const month = date.getMonth();
+                    const day = date.getDate();
+                    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                    const monthName = months[month];
+
+                    return `${day} ${monthName},${year}`;
+                },
+
+            },
+
+            computed: {
+                sortByDate() {
+                    return this.articles.sort(function (a, b) {
+                        return b.date - a.date;
+                    });
+                },
+            },
+
+        });
+    </script>
+
+
+</body>
+
+</html>
