@@ -1,0 +1,81 @@
+<!-- 
+    Вы разрабатываете приложение для отображения и сортировки списка товаров. У вас есть массив объектов products, где каждый объект представляет товар с его названием и ценой. Вам необходимо отобразить список товаров и предоставить пользователю возможность сортировать товары по цене (по возрастанию и по убыванию). 
+-->
+
+<!-- 
+    Примечание от себя: Будем делать согласно уровню учебной программы в одном HTML и одном VUE скрипте 
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список товаров</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <button @click="sortAscending()">Сортировать по возрастанию</button>
+        <button @click="sortDescending()">Сортировать по убыванию</button>
+
+        <ul>
+            <!-- подглядел иныормацию что key можно брать из любого поля, главное без повторов -->
+            <!-- в данном примере мы обращаемся напрямую к computed методу, вероятней такой вариант будет правильней -->
+            <li v-for="product in sortedProducts" :key="product.name">
+                {{ product.name }} - {{ product.price }}
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="product in products" :key="product.name">
+                {{ product.name }} - {{ product.price }}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                products: [
+                    { name: 'Товар 1', price: 100 },
+                    { name: 'Товар 2', price: 200 },
+                    { name: 'Товар 3', price: 50 },
+                    { name: 'Товар 4', price: 150 },
+                ],
+                sortOrder: 'asc', // этим мы будем определять текущее значение сортировки
+            },
+
+            computed: {
+                // метод считывает массив товаров, сортирует и отдаёт его туда где будет запрошен данный метод
+                // в сохранённой версии сортируется исходный массив. Этого можно избежать используя .slice()
+                sortedProducts() {
+                    // .slice - создаёт копию массива, чтобы сохранить исходный. В нашем примере можно обойтись без него, но лучше исключить мутацию исходного объекта
+                    // .sort - при помощи внутренней логики будет перебирать попарно объекты массива. В виде выражения мы указываем по какому свойству сравнивать эти объекты и порядок сортироки.
+                    return this.products.sort((a, b) => {
+                        if (this.sortOrder === 'asc') {
+                            return a.price - b.price;
+                        } else {
+                            return b.price - a.price;
+                        }
+                    });
+                }
+            },
+
+            methods: {
+                sortAscending() {
+                    this.sortOrder = 'asc';
+                },
+                sortDescending() {
+                    this.sortOrder = 'desc';
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

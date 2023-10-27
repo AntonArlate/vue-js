@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+
+    &__menubar {
+        display: flex;
+        gap: 50px;
+
+        font-weight: 400;
+        font-family: 'Jost';
+        font-size: 20px;
+        line-height: 125%;
+        /* identical to box height, or 25px */
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        color: #292F36;
+
+    }
+}
