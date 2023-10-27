@@ -228,6 +228,7 @@
                 height: 479px;
                 display: flex;
                 flex-direction: column;
+                justify-content: space-between;
                 gap: 11px;
 
                 &__image-box {
@@ -286,6 +287,7 @@
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
+                    flex-grow: 1;
 
                     &__title {
 
@@ -329,7 +331,6 @@
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
-                        margin-top: 41px;
 
                         .date {
                             font-family: 'Jost';

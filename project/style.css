@@ -28,6 +28,7 @@ a {
   height: 34px;
 }
 .logo__text {
+  font-weight: 400;
   font-size: 40px;
   line-height: 125%;
   /* identical to box height, or 50px */
@@ -41,6 +42,7 @@ a {
 .header__menubar {
   display: flex;
   gap: 50px;
+  font-weight: 400;
   font-family: "Jost";
   font-size: 20px;
   line-height: 125%;
