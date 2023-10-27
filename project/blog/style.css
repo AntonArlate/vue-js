@@ -242,6 +242,7 @@ a {
   height: 479px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 11px;
 }
 .blog__news .news-card__content__image-box {
@@ -287,6 +288,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  flex-grow: 1;
 }
 .blog__news .news-card__content__subcontent__title {
   width: 305px;
@@ -321,7 +323,6 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 41px;
 }
 .blog__news .news-card__content__subcontent__footer .date {
   font-family: "Jost";
