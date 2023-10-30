@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <!-- HEADER -->
+    <section class="header center">
+        <a href="../index.html" class="header_logo logo">
+            <img src="../img/Logo.svg" alt="logo__img" class="logo__img">
+            <h3 class="logo__text">Interno</h3>
+        </a>
+        <section class="header__menubar">
+            <a href="../index.html">Home</a>
+            <article class="header__menubar__project">Project</article>
+            <a href="#">Blog</a>
+        </section>
+    </section>
+
+    <!-- BANNER -->
+    <section class="banner">
+        <div class="banner__background" style="background-image: url('../img/blog-details-banner.png');"></div>
+
+    </section>
+
+    <!-- BLOG DETAILS -->
+    <!-- сюда подключаем VUE -->
+    <section class="blog center" id="app">
+        <div class="blog__details">
+            <!-- передаём сюда выбранную статью -->
+            <my-article-detail :article="articles[indexCurrentArticle]" :key="articles[indexCurrentArticle].id">
+            </my-article-detail>
+
+            <!-- а сюда все остальные -->
+            <!-- в моём варианте при первом рендере страницы тут пустой массив. Как это исправить я не придумал -->
+            <my-article v-for="article in filteredArticles" :article="article" :key="article.title"
+                @title-click="handleTitleClick">
+                </my-article-detail>
+
+        </div>
+
+        <div class="blog__sidebar">
+            <h2 class="blog__sidebar__title">Tags</h2>
+            <div class="blog__sidebar__tags">
+                <button class="tag-button" :class="{ 'selected': tag === selectedTag }" v-for="tag in uniqueTags"
+                    @click="filterByTag(tag)">{{ tag }}</button>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="../articles.js"></script>
+    <script src="./my-article.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                articles: articles,
+                indexCurrentArticle: 7, // выброанная статья которая будет показываться подробнее
+                selectedTag: '',
+                filteredArticles: [],
+            },
+
+            created: function () {
+                this.filteredArticles = this.filterByTag(this.selectedTag);
+            },
+
+            computed: {
+                // перебирает все теги доступных статей и создаёт массив уникальных
+                uniqueTags: function () {
+                    const tags = [];
+                    this.articles.forEach(function (article) {
+                        if (!tags.includes(article.tag)) {
+                            tags.push(article.tag);
+                        }
+                    });
+                    return tags;
+                },
+
+                // filterArticles() {
+                //     if (this.selectedTag === '') {
+                //         return this.articles.filter((article, index) => index !== this.indexCurrentArticle);
+                //     } else {
+                //         return this.articles.filter((article, index) => article.tag === this.selectedTag && index !== this.indexCurrentArticle);
+                //     }
+                // },
+
+
+
+            },
+
+
+            methods: {
+
+                // mainFilterByTag() {
+                //     const self = this;
+                //     if (this.selectedTag === '') {
+                //         this.filteredArticles = this.articles.filter(function (article, index) {
+                //             return index !== self.indexCurrentArticle;
+                //         });
+                //     } else {
+                //         this.filteredArticles = this.articles.filter(function (article, index) {
+                //             return article.tag === this.selectedTag
+                //                 && index !== self.indexCurrentArticle;
+                //         });
+                //     }
+                // },
+
+                filterByTag: function (tag) {
+                    const self = this; // требуется для передачи в filter
+                    if (this.selectedTag !== tag) {
+                        // после длительных эксперементов эта перемеая вообще всегда пустая, хотя программа отрабатывает верно.
+                        console.log('this.selectedTag :>> ', this.selectedTag);
+                        this.selectedTag = tag;
+                        this.filteredArticles = this.articles.filter(function (article, index) {
+                            return article.tag === tag
+                                && index !== self.indexCurrentArticle;
+                        });
+                    } else {
+                        this.selectedTag = '';
+                        this.filteredArticles = this.articles.filter(function (article, index) {
+                            return index !== self.indexCurrentArticle;
+                        });;
+                    }
+                },
+
+                // выбраная статья устанавливается нормально, но как обновить мой фильтр по тегам я не придумал. 
+                handleTitleClick(title) {
+                    const index = this.articles.findIndex(article => article.title === title);
+                    this.indexCurrentArticle = index;
+                    // this.filterByTag(this.selectedTag);
+                    console.log('Индекс объекта:', this.indexCurrentArticle);
+                },
+
+            },
+        });
+    </script>
+
+
+</body>
+
+</html>
