@@ -5,15 +5,22 @@
             <h2>{{ article.title }}</h2>
             <p class="date">{{ formatDate(article.date) }}</p>
         </div>
-        <div v-for="line in article.content.split('\\n')" :key="line.id">
-            <p class="article__text" v-if="!line.startsWith('IMAGE:')">{{ line }}</p>
-            <img v-else :src="line.substr(6).trim()" :alt="article.title" />
+
+        <div class="article__text" v-for="(line, index) in article.content.split('\n')" :key="index">
+            <p v-if="!line.startsWith('IMAGE:')" v-html="line"></p>
+            <img v-else :src="line.substr(6).trim()" :alt="line" />
         </div>
     </div>
 </template>
 
 <script>
 export default {
+
+    mounted: function () {
+        console.log(this.article);
+
+    },
+
     props: {
         article: Object,
     },
@@ -36,6 +43,10 @@ export default {
 
 <style lang="scss" scoped>
 .article {
-    border: 1px solid rebeccapurple
+    border: 1px solid rebeccapurple;
+}
+
+.article__text+.article__text {
+    margin-top: 10px;
 }
 </style>
