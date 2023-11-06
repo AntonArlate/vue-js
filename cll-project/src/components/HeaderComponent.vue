@@ -1,10 +1,7 @@
 <template>
     <div>
         <header class="header center">
-            <router-link to="/" class="header_logo logo">
-                <img src="@/assets/img/Logo.svg" alt="logo__img" class="logo__img">
-                <h3 class="logo__text">Interno</h3>
-            </router-link>
+            <LogoComponent />
             <nav class="header__menubar">
                 <!-- теперь наши сылки будут представлять из себя <router-link> -->
                 <router-link to="/">Home</router-link>
@@ -16,22 +13,17 @@
 </template>
 
 <script>
+import LogoComponent from './LogoComponent.vue';
+
 export default {
     name: 'CllProjectHeader',
-
     data() {
-        return {
-
-        };
+        return {};
     },
-
     mounted() {
-
     },
-
-    methods: {
-
-    },
+    methods: {},
+    components: { LogoComponent }
 };
 </script>
 
@@ -43,24 +35,7 @@ export default {
     display: flex;
     justify-content: space-between;
 
-    .logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
 
-        &__img {
-            width: 34px;
-            height: 34px;
-        }
-
-        &__text {
-            font-weight: 400;
-            font-size: 40px;
-            line-height: 125%;
-            /* identical to box height, or 50px */
-            color: #292F36;
-        }
-    }
 
     &__menubar {
         display: flex;
