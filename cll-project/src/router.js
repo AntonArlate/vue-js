@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 import HomePage from './views/HomePage.vue';
 import BlogPage from './views/BlogPage.vue';
 import BlogDetailsPage from './views/BlogDetailsPage.vue';
+import ProjectPage from './views/ProjectPage.vue';
 
 
 Vue.use(VueRouter);
@@ -16,6 +17,7 @@ const router = new VueRouter({
         { path: '/', component: HomePage },
         { path: '/blog', component: BlogPage },
         { path: '/blog/details/:id', name: 'details', component: BlogDetailsPage },
+        { path: '/project', component: ProjectPage },
     ],
 });
 
