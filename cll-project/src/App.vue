@@ -6,16 +6,19 @@
     <!-- буду доставать страницы из папки views (указывается импортом в router.js). Это всё теже компоненты только названы иначе -->
     <router-view></router-view>
 
+    <FooterComponent />
   </div>
 </template>
 
 <script>
+import FooterComponent from './components/FooterComponent.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
 
 export default {
   name: 'App',
   components: {
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   }
 }
 </script>
