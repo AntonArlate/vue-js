@@ -2,8 +2,8 @@
     <div class="projectPage">
 
         <Banner :title="'Our Project'" :imgLink="'@/assets/img/blogBannerBg.png'"></Banner>
-        <Banner :title="'Our Project'" :imgLink="'/img/blogBannerBg.png'"></Banner>
-        <Banner :title="'Our Project'" :imgLink="'src/assets/img/blogBannerBg.png'"></Banner>
+        <Banner :title="'Our Project'" :imgLink="'./img/blogBannerBg.png'"></Banner>
+        <Banner :title="'Our Project'" :imgLink="'../assets/img/blogBannerBg.png'"></Banner>
 
         <section class="project center">
 
@@ -43,14 +43,14 @@ export default {
         }
     },
 
-    created() {
-        this.filteredArray = this.filterByTag(this.selectedTag);
+    async created() {
+        await this.filterByTag(this.selectedTag);
     },
 
-    mounted: function () {
-        this.filteredArray = this.filterByTag(this.selectedTag);
-        // console.log('this.filteredArticles :>> ', this.filteredArticles);
-    },
+    // mounted: function () {
+    //     this.filteredArray = this.filterByTag(this.selectedTag);
+    //     // console.log('this.filteredArticles :>> ', this.filteredArticles);
+    // },
 
     methods: {
         filterByTag(tag) {

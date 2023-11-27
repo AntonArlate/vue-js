@@ -1,7 +1,7 @@
 <template>
     <section class="banner">
 
-        <img :src="imgLink" alt="imgLink" class="banner__background">
+        <img :src="require(imgLink)" alt="imgLink" class="banner__background">
 
         <div class="banner__intro">
             <nav class="breadcrumb">
