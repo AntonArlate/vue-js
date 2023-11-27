@@ -29,7 +29,7 @@ export default {
         Banner
     },
     mounted() {
-        this.createCardCopies();
+        // this.createCardCopies();
     },
     methods: {
         getCardClass(index) {

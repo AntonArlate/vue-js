@@ -1,9 +1,9 @@
 <template>
     <div class="BlogPage">
 
-        <Banner></Banner>
+        <Banner :title="'Articles & News'"></Banner>
 
-        <section class="blog center" id="app">
+        <section class="blog center">
 
             <div class="blog__latest-post">
                 <h2 class="block-title">Latest Post</h2>
@@ -90,7 +90,7 @@
 </template>
   
 <script>
-import Banner from './blogPageComponents/BlogPageBanner.vue';
+import Banner from '@/components/PageBannerComponent.vue';
 import articles from '@/assets/articles.js';
 
 export default {
